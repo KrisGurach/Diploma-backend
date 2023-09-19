@@ -1,5 +1,4 @@
-module.exports.notAuthorizedErrorMessage = 'Необходима авторизация';
-
+module.exports.createSuccessStatusCode = 201;
 module.exports.validationErrorCode = 400;
 module.exports.notAuthorizedErrorCode = 401;
 module.exports.forbiddenErrorCode = 403;

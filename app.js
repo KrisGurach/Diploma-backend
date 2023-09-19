@@ -5,7 +5,7 @@ const { errors } = require('celebrate');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const { serverErrorCode } = require('./helpers/errors/errorHelpers');
+const { serverErrorCode } = require('./helpers/statusCodeHelpers');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();

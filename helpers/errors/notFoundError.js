@@ -1,4 +1,4 @@
-const { notFoundErrorCode } = require('./errorHelpers');
+const { notFoundErrorCode } = require('../statusCodeHelpers');
 
 class NotFoundError extends Error {
   constructor(message) {
