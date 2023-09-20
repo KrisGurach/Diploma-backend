@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Movie = require('../models/movie');
-const { createSuccessStatusCode } = require('../helpers/constantsHelpers');
+const { createSuccessStatusCode } = require('../helpers/statusCodeHelpers');
 const ValidationError = require('../helpers/errors/validationError');
 const ServerError = require('../helpers/errors/serverError');
 const ForbiddenError = require('../helpers/errors/forbiddenError');
@@ -59,6 +59,7 @@ const deleteMovie = (req, res, next) => {
     .then((movie) => {
       if (movie.owner.toString() !== req.user._id) {
         next(new ForbiddenError('Можно удалять только собственные фильмы.'));
+        return;
       }
 
       Movie.deleteOne(movie)

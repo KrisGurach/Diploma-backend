@@ -11,8 +11,6 @@ const { createSuccessStatusCode } = require('../helpers/statusCodeHelpers');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-const userNotFound = (id) => `Пользователь с указанным id = ${id} не найден.`;
-
 function findUserById(id, res, next) {
   User.findById(id)
     .orFail()
@@ -21,7 +19,7 @@ function findUserById(id, res, next) {
       if (e instanceof mongoose.Error.CastError) {
         next(new ValidationError('Переданы некорректные данные при поиске пользователя.'));
       } else if (e instanceof mongoose.Error.DocumentNotFoundError) {
-        next(new NotFoundError(userNotFound(id)));
+        next(new NotFoundError(`Пользователь с указанным id = ${id} не найден.`));
       } else {
         next(new ServerError());
       }
