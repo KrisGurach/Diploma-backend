@@ -50,18 +50,17 @@ const createUser = (req, res, next) => {
   const {
     name,
     email,
-    password,
+    password: passwordToHash,
   } = req.body;
 
   bcrypt
-    .hash(password, 10)
+    .hash(passwordToHash, 10)
     .then((hash) => User.create({
       name,
       email,
       password: hash,
     }))
     .then((user) => {
-      // eslint-disable-next-line no-shadow, no-underscore-dangle
       const { password, ...data } = user._doc;
       res.status(createSuccessStatusCode).send(data);
     })

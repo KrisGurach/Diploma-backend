@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable import/no-extraneous-dependencies */
 require('dotenv').config();
 const { errors } = require('celebrate');
 const express = require('express');
@@ -12,12 +10,13 @@ const app = express();
 
 const { PORT = 3000 } = process.env;
 
+const { CONNECTION_STRING = 'mongodb://0.0.0.0:27017/bitfilmsdb' } = process.env;
+
 try {
-  mongoose.connect('mongodb://0.0.0.0:27017/bitfilmsdb', {
+  mongoose.connect(CONNECTION_STRING, {
     useNewUrlParser: true,
   });
 } catch (err) {
-  // eslint-disable-next-line no-console
   console.log(`error connection: ${err}`);
 }
 
